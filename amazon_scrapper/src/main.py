@@ -1,10 +1,9 @@
-# scraper_project/src/main.py
 from queries.query_reader import read_queries
 from scraper.amazon_scraper import AmazonScraper
 from storage.json_writer import save_to_json
 
 def main():
-    queries = read_queries("user_queries.json")
+    queries = read_queries("../user_queries.json")
     scraper = AmazonScraper()
 
     for query in queries:
