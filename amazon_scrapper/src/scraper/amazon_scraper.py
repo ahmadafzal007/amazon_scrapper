@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from .data_model import Product
+from model.data_model import Product
 from .utils import extract_text
 from config import BASE_URL, HEADERS
 import time
@@ -31,7 +31,6 @@ class AmazonScraper:
             soup = BeautifulSoup(response.content, 'html.parser')
             product_elements = soup.find_all("div", {"data-component-type": "s-search-result"})
             for element in product_elements:
-                # title = extract_text(element.find("span", class_="a-size-medium"))
                 title_element = element.find("h2", {"class": "a-size-medium"})
                 title = title_element["aria-label"] if title_element and "aria-label" in title_element.attrs else extract_text(element.find("span", class_="a-size-medium"))
                 reviews = extract_text(element.find("span", class_="a-size-base"))
